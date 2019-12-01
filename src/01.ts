@@ -3,7 +3,7 @@ import { foldMap } from 'fp-ts/lib/Array';
 
 export const deriveFuel = (mass: number): number => Math.floor(mass / 3) - 2;
 
-export const totalFuel = foldMap(monoidSum)(deriveFuel);
+export const totalFuel: (arg0: number[]) => number = foldMap(monoidSum)(deriveFuel);
 
 const recursiveFuel = (fuelMass: number) => {
   if (fuelMass > 0) {
@@ -15,4 +15,4 @@ const recursiveFuel = (fuelMass: number) => {
 
 export const deriveRecursiveFuel = (mass: number): number => recursiveFuel(deriveFuel(mass));
 
-export const totalRecursiveFuel = foldMap(monoidSum)(deriveRecursiveFuel);
+export const totalRecursiveFuel: (arg0: number[]) => number = foldMap(monoidSum)(deriveRecursiveFuel);
